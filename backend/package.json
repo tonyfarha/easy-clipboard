@@ -1,0 +1,7 @@
+{
+  "name": "easy-clipboard-backend",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js"
+  }
+}
