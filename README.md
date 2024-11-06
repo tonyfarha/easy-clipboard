@@ -1,6 +1,6 @@
 # Easy Clipboard
 
-Easy Clipboard is a lightweight, real-time clipboard-sharing app. It allows users to share text between multiple browsers instantly. All data is handled in memory without persistent storage. Powered by Socket.io, Easy Clipboard generates a unique ID for each session, enabling simple, temporary sharing across multiple clients.
+Easy Clipboard is a lightweight, real-time clipboard-sharing app. It allows users to share text between multiple browsers instantly.
 
 ## Features
 
