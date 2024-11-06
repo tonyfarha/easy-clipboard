@@ -4,10 +4,12 @@ import { socket } from '@/socket';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDebouncedCallback } from 'use-debounce';
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const Home = () => {
 
   const [clipboard, setClipboard] = useState<string>('');
+  const [connectedClients, setConnectedClients] = useState<number>(0);
 
   const { id } = useParams();
 
@@ -19,9 +21,14 @@ export const Home = () => {
       setClipboard(clipboardText);
     });
 
+    socket.on('connected-clients', (clients: number) => {
+      setConnectedClients(clients);
+    });
+
     return () => {
       socket.off('join-clipboard');
       socket.off('update-clipboard');
+      socket.off('connected-clients');
       socket.disconnect();
     }
   }, []);
@@ -43,6 +50,7 @@ export const Home = () => {
         }}
       />
       <QRCode value={`${document.location}`} />
+      {connectedClients > 0 ? <p className="text-center text-green-600 text-sm">{connectedClients} connected {`${connectedClients === 1 ? 'client' : 'clients'}`}</p> : <Skeleton className="w-[150px] h-[10px] rounded-full" />}
     </>
   )
 }
