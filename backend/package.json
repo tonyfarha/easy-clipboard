@@ -5,6 +5,6 @@
     "dev": "node --watch --env-file=.env server.js"
   },
   "dependencies": {
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.3"
   }
 }
