@@ -31,7 +31,7 @@ export const Home = () => {
       socket.off('connected-clients');
       socket.disconnect();
     }
-  }, []);
+  }, [id]);
 
   const handleUpdateClipboard = useDebouncedCallback((clipboardText: string) => {
     socket.emit('update-clipboard', { clipboardText, clipboardID: id });
@@ -41,7 +41,7 @@ export const Home = () => {
     <>
       <Textarea
         placeholder="Enter your text here..."
-        className="min-h-[100px]"
+        className="min-h-25 text-md"
         aria-label="Text input"
         value={clipboard}
         onChange={(e) => {
@@ -50,7 +50,7 @@ export const Home = () => {
         }}
       />
       <QRCode value={`${document.location}`} />
-      {connectedClients > 0 ? <p className="text-center text-green-600 text-sm">{connectedClients} connected {`${connectedClients === 1 ? 'client' : 'clients'}`}</p> : <Skeleton className="w-[150px] h-[10px] rounded-full" />}
+      {connectedClients > 0 ? <p className="text-center text-green-600 text-sm">{connectedClients} connected {`${connectedClients === 1 ? 'client' : 'clients'}`}</p> : <Skeleton className="w-37.5 h-2.5 rounded-full" />}
     </>
   )
 }

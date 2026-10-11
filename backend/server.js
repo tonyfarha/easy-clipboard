@@ -1,8 +1,11 @@
+import http from "http";
 import { Server } from "socket.io";
 
-const io = new Server(process.env.SOCKET_IO_PORT, {
+const server = http.createServer();
+
+const io = new Server(server, {
     cors: {
-        origin: "*"
+        origin: process.env.APP_URL
     }
 });
 
@@ -49,4 +52,8 @@ io.on('connection', (socket) => {
         }
     });
 
+});
+
+server.listen(process.env.SERVER_PORT, `${process.env.ENV === 'production' ? '127.0.0.1' : '0.0.0.0'}`, () => {
+    console.log(`Socket.IO server running on port ${process.env.SERVER_PORT}`);
 });
